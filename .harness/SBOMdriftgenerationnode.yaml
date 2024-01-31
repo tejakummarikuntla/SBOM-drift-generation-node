@@ -50,3 +50,13 @@ pipeline:
                       limits:
                         memory: 500Mi
                         cpu: "0.5"
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: |
+                      echo "Codebase.Branch <+codebase.branch>"
+                      echo "Trigger.sourceBranch: <+trigger.sourceBranch>"
+                      echo "Trigger.targetBranch: <+trigger.targetBranch>"
