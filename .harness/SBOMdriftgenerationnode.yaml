@@ -41,7 +41,7 @@ pipeline:
                       spec:
                         url: https://github.com/tejakummarikuntla/SBOM-drift-generation-node
                         variant_type: branch
-                        variant: <+trigger.sourceBranch>
+                        variant: <+codebase.branch>
                     sbom_drift:
                       base: repository
                       spec:
