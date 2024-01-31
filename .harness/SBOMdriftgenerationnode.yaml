@@ -31,11 +31,17 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
+                    connectorRef: account.harnessImage
+                    image: snyk/snyk:node-14
                     shell: Sh
-                    command: |
+                    command: |-
                       echo "Codebase.Branch <+codebase.branch>"
                       echo "Trigger.sourceBranch: <+trigger.sourceBranch>"
                       echo "Trigger.targetBranch: <+trigger.targetBranch>"
+
+
+                      rm -rf ./node_modules package-lock.json
+                      npm install
               - step:
                   type: SscaOrchestration
                   name: SscaOrchestration_1
