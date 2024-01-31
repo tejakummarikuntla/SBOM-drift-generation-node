@@ -1,0 +1,22 @@
+inputSet:
+  pipeline:
+    identifier: SBOMdriftgenerationnode
+    properties:
+      ci:
+        codebase:
+          build:
+            spec:
+              branch: <+trigger.sourceBranch>
+            type: branch
+    object Object: properties.ci.codebase
+  name: trigger pipeline
+  identifier: trigger_pipeline
+  provider:
+    type: Others
+    titleLabelKey: common.thirdPartyGitProvider
+    descriptionLabelKey: common.thirdPartyGitProviderInfo
+    icon: service-github
+    size: 20
+    disabled: false
+  orgIdentifier: default
+  projectIdentifier: Product_Exploratory

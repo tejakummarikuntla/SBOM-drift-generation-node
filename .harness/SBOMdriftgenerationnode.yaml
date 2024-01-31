@@ -27,6 +27,16 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: |
+                      echo "Codebase.Branch <+codebase.branch>"
+                      echo "Trigger.sourceBranch: <+trigger.sourceBranch>"
+                      echo "Trigger.targetBranch: <+trigger.targetBranch>"
+              - step:
                   type: SscaOrchestration
                   name: SscaOrchestration_1
                   identifier: SscaOrchestration_1
@@ -41,7 +51,7 @@ pipeline:
                       spec:
                         url: https://github.com/tejakummarikuntla/SBOM-drift-generation-node
                         variant_type: branch
-                        variant: <+trigger.sourceBranch>
+                        variant: <+codebase.branch>
                     sbom_drift:
                       base: repository
                       spec:
