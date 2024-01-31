@@ -1,0 +1,52 @@
+pipeline:
+  name: SBOM-drift-generation-node
+  identifier: SBOMdriftgenerationnode
+  projectIdentifier: Product_Exploratory
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.tejakummarikuntla
+        repoName: SBOM-drift-generation-node
+        build: <+input>
+  stages:
+    - stage:
+        name: Build
+        identifier: Build
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: SscaOrchestration
+                  name: SscaOrchestration_1
+                  identifier: SscaOrchestration_1
+                  spec:
+                    mode: generation
+                    tool:
+                      type: Syft
+                      spec:
+                        format: spdx-json
+                    source:
+                      type: repository
+                      spec:
+                        url: https://github.com/tejakummarikuntla/SBOM-drift-generation-node
+                        variant_type: branch
+                        variant: <+trigger.sourceBranch>
+                    sbom_drift:
+                      base: repository
+                      spec:
+                        variant: main
+                    resources:
+                      limits:
+                        memory: 500Mi
+                        cpu: "0.5"
