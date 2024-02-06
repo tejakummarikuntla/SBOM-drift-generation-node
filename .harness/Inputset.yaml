@@ -1,0 +1,15 @@
+inputSet:
+  name: Inputset
+  identifier: Inputset
+  orgIdentifier: default
+  projectIdentifier: Product_Exploratory
+  pipeline:
+    identifier: SBOMdriftgenerationnode
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
+  object Object: pipeline.properties.ci.codebase
