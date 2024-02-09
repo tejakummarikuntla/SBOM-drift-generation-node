@@ -74,14 +74,16 @@ pipeline:
         description: ""
         type: CI
         spec:
-          cloneCodebase: true
+          cloneCodebase: false
           caching:
             enabled: true
+            paths: []
           infrastructure:
             type: KubernetesDirect
             spec:
               connectorRef: account.kubernetes_connector_for_at
               namespace: ssca-at
+              automountServiceAccountToken: true
               nodeSelector: {}
               os: Linux
           execution:
@@ -95,4 +97,6 @@ pipeline:
                     image: tejakummarikunlta/easy-buggy-app
                     shell: Sh
                     command: pwd
+          slsa_provenance:
+            enabled: false
   allowStageExecutions: true
