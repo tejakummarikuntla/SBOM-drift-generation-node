@@ -68,3 +68,31 @@ pipeline:
               automountServiceAccountToken: true
               nodeSelector: {}
               os: Linux
+    - stage:
+        name: twi
+        identifier: twi
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.kubernetes_connector_for_at
+              namespace: ssca-at
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: tejakummarikutla
+                    image: tejakummarikunlta/easy-buggy-app
+                    shell: Sh
+                    command: pwd
+  allowStageExecutions: true
